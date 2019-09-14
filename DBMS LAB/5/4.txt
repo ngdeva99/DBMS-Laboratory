@@ -1,0 +1,63 @@
+//1                                                  
+
+SQL> select distinct b1.bus_details,b2.capacity from bd b1 join br b2 on b1.bus_code=b2.bus_code and b2.capacity=(select min(capacity) from br);
+
+BUS_DETAILS       CAPACITY
+--------------- ----------
+Deluxe Bus              40
+SuperFast Bus           40
+
+//2                                              
+
+SQL> select count(destination) from br where destination='Chennai';
+
+COUNT(DESTINATION)                                                              
+------------------                                                              
+                 2                                                              
+
+//3
+
+SQL> select count(age) from ticket_detail where age<21;
+
+COUNT(AGE)                                                                      
+----------                                                                      
+         3  
+//4                                                                    
+
+SQL> select b1.bus_details,b2.fare from bd b1 join br b2 on b1.bus_code=b2.bus_code and b2.fare=(select max(fare) from br);
+
+BUS_DETAILS           FARE                                                      
+--------------- ----------                                                      
+SuperFast Bus          800                                                      
+SuperFast Bus          800                                                      
+
+
+
+
+//5
+SQL> select t1.name from ticket_detail t1 join ticket t2 on t1.ticket_no=t2.ticket_no and extract(month from t2.doj)=1;
+
+no rows selected
+
+//6
+SQL> select distinct b1.bus_details,b1.bus_code from bd b1 join br b2 on b1.bus_code=b2.bus_code and b2.fare>(select avg(fare) from br);
+
+BUS_DETAILS       BUS_CODE                                                      
+--------------- ----------                                                      
+SuperFast Bus            2                                                      
+Deluxe Bus               1                                                      
+
+//7
+SQL> select count(sex) from ticket_detail t1 join ticket t2 on t1.ticket_no=t2.ticket_no and t2.route_id IN(select route_id from ticket where route_id='105' or route_id='103') and t1.sex IN(select sex from ticket_detail where sex='F');
+
+COUNT(SEX)                                                                      
+----------                                                                      
+         1                                                                      
+//8
+SQL> select count(sex) from ticket_detail t1 join ticket t2 on t1.ticket_no=t2.ticket_no and t2.route_id IN(select route_id from ticket where route_id='101' or route_id='100') and t1.sex IN(select sex from ticket_detail where sex='M');
+
+COUNT(SEX)                                                                      
+----------                                                                      
+         1                                                                      
+
+

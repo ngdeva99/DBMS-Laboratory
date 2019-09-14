@@ -1,0 +1,115 @@
+
+//4
+SQL> DECLARE
+  2  salary1 NUMBER;
+  3  
+  4  BEGIN
+  5  SELECT salary
+  6  INTO salary1
+  7  FROM emp1
+  8  WHERE Designation='Assistant Manager';
+  9  DBMS_OUTPUT.PUT_LINE
+ 10  ('Salary: '||salary1);
+ 11  EXCEPTION
+ 12  WHEN NO_DATA_FOUND THEN
+ 13  DBMS_OUTPUT.PUT_LINE('There is no such student');
+ 14  END;
+ 15  /
+Salary: 450                                                                     
+
+PL/SQL procedure successfully completed.
+
+SQL> INSERT INTO EMP1
+  2        VALUES(1001,'SARAH','SALESMAN',10,'ECE',to_date('02/05/1993','DD/MM/YYYY'),750);
+
+1 row created.
+
+//5
+
+SQL> DECLARE
+  2  name1 VARCHAR2(25);
+  3  no NUMBER;
+  4  
+  5  BEGIN
+  6  SELECT empno,name
+  7  INTO no,name1
+  8  FROM emp1
+  9  WHERE empno = 1001;
+ 10  DBMS_OUTPUT.PUT_LINE
+ 11  ('ID FOUND ->EMPNO: '||no||'   NAME:'||name1);
+ 12  EXCEPTION
+ 13  WHEN NO_DATA_FOUND THEN
+ 14  DBMS_OUTPUT.PUT_LINE('There is no such employee');
+ 15  END;
+ 16  /
+ID FOUND ->EMPNO: 1001   NAME:SARAH                                             
+
+PL/SQL procedure successfully completed.
+
+
+//5.1
+
+SQL> DECLARE
+  2  name1 VARCHAR2(25);
+  3  no NUMBER;
+  4  
+  5  BEGIN
+  6  SELECT empno,name
+  7  INTO no,name1
+  8  FROM emp1
+  9  WHERE empno = 10010;
+ 10  DBMS_OUTPUT.PUT_LINE
+ 11  ('ID FOUND ->EMPNO: '||no||'   NAME:'||name1);
+ 12  EXCEPTION
+ 13  WHEN NO_DATA_FOUND THEN
+ 14  DBMS_OUTPUT.PUT_LINE('There is no such employee');
+ 15  END;
+ 16  /
+There is no such employee                                                       
+
+PL/SQL procedure successfully completed.
+
+//6 
+
+SQL> BEGIN
+  2    INSERT INTO emp1
+  3       VALUES(2369,'KALIMBA','ANALYST',10,'ECE',to_date('03/03/1990','DD/MM/YYYY'),1450);
+  4  END;
+  5  /
+
+PL/SQL procedure successfully completed.
+
+-----output for 6-----
+SQL> select * from emp1;
+
+     EMPNO NAME                 DESIGNATION              DEPTNO                 
+---------- -------------------- -------------------- ----------                 
+DNAME                DOJ           SALARY                                       
+-------------------- --------- ----------                                       
+      7369 Deva                 MANAGER                      30                 
+CSE                  02-FEB-76       2550                                       
+                                                                                
+      7521 ARJUN                ANALYST                      20                 
+IT                   22-JUN-81       1850                                       
+                                                                                
+      1369 VIJAY                CEO                          50                 
+EEE                  07-JUN-00       3950                                       
+                                                                                
+
+     EMPNO NAME                 DESIGNATION              DEPTNO                 
+---------- -------------------- -------------------- ----------                 
+DNAME                DOJ           SALARY                                       
+-------------------- --------- ----------                                       
+      4369 KONAN                Assistant Manager            10                 
+ECE                  08-MAY-96        450                                       
+                                                                                
+      1001 SARAH                SALESMAN                     10                 
+ECE                  02-MAY-93        750                                       
+                                                                                
+      2369 KALIMBA              ANALYST                      10                 
+ECE                  03-MAR-90       1450                                       
+                                                                                
+
+6 rows selected.
+
+SQL> spool off;

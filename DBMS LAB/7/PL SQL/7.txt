@@ -1,0 +1,107 @@
+///PRE-REQ
+SQL> SET SERVEROUTPUT ON;
+SQL> begin
+  2      dbms_output.put_line('Testing output');
+  3  end;
+  4  /
+Testing output
+
+//1
+SQL> declare
+  2      n number:=407;
+  3      s number:=0;
+  4      r number;
+  5      len number;
+  6      m number;
+  7  
+  8  begin
+  9      m:=n;
+ 10  
+ 11      len:=length(to_char(n));
+ 12  
+ 13      while n>0
+ 14      loop
+ 15          r:=mod(n,10);
+ 16          s:=s+power(r,len);
+ 17          n:=trunc(n/10);
+ 18      end loop;
+ 19  
+ 20      if m=s
+ 21      then
+ 22          dbms_output.put_line('The Given Number ' || m || ' is an Armstrong Number');
+ 23      else
+ 24          dbms_output.put_line('The Given Number ' || m || ' is not  an Armstrong Number');
+ 25      end if;
+ 26  
+ 27  end;
+ 28  /
+-----output for 1
+The Given Number 407 is an Armstrong Number                                     
+PL/SQL procedure successfully completed.
+
+//2
+
+SQL> declare
+  2  
+  3  -- declare variable num , len
+  4  -- and revnum of datatype varchar
+  5  num varchar2(5):='12345';
+  6  len number(2);
+  7  revnum varchar2(5);
+  8  
+  9  
+ 10  begin
+ 11  
+ 12  -- Here we find the length of string
+ 13  len := length(num);
+ 14  
+ 15  -- here we starting a loop from max len to 1
+ 16  for i in reverse 1.. len
+ 17  loop
+ 18  
+ 19  -- assigning the reverse number in revnum
+ 20  revnum := revnum || substr(num,i,1);
+ 21  end loop;
+ 22  
+ 23  -- Print the Result
+ 24  dbms_output.put_line('given number ='|| num);
+ 25  dbms_output.put_line('reverse number ='|| revnum);
+ 26  end;
+ 27  /
+
+
+-------output--------
+given number =12345                                                             
+reverse number =54321                                                           
+
+PL/SQL procedure successfully completed.
+
+
+//3
+SQL> DECLARE
+  2  -- declare variable str , len
+  3  -- and str1 of datatype varchar
+  4  str VARCHAR(20) := 'CODECHEF';
+  5  len NUMBER;
+  6  str1 VARCHAR(20);
+  7  BEGIN
+  8  -- Here we find the length of string
+  9  len := Length(str);
+ 10  
+ 11  -- here we starting a loop from max len to 1
+ 12  FOR i IN REVERSE 1.. len LOOP
+ 13  -- assigning the reverse string in str1
+ 14  str1 := str1
+ 15  || Substr(str, i, 1);
+ 16  END LOOP;
+ 17  
+ 18  dbms_output.Put_line('Reverse of string is '
+ 19  || str1);
+ 20  END;
+ 21  /
+---------------output--------------
+Reverse of string is FEHCEDOC                                                   
+
+PL/SQL procedure successfully completed.
+
+SQL> spool off;

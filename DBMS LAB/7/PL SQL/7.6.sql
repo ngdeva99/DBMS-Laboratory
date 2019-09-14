@@ -1,0 +1,7 @@
+BEGIN
+  INSERT INTO emp1
+     VALUES(2369,'KALIMBA','ANALYST',10,'ECE',to_date('03/03/1990','DD/MM/YYYY'),1450);
+END;
+/
+
+

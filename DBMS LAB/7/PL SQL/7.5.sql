@@ -1,0 +1,18 @@
+
+
+DECLARE
+name1 VARCHAR2(25);
+no NUMBER;
+
+BEGIN
+SELECT empno,name
+INTO no,name1
+FROM emp1
+WHERE empno = 10010;
+DBMS_OUTPUT.PUT_LINE
+('ID FOUND ->EMPNO: '||no||'   NAME:'||name1);
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+DBMS_OUTPUT.PUT_LINE('There is no such employee');
+END;
+/

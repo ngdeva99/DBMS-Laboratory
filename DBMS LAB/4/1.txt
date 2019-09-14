@@ -1,0 +1,203 @@
+SQL> select CEIL(25.75) from dual;
+
+CEIL(25.75)                                                                     
+-----------                                                                     
+         26                                                                     
+
+SQL>  SELECT FLOOR(25.75) from dual;
+
+FLOOR(25.75)                                                                    
+------------                                                                    
+          25                                                                    
+
+SQL> 
+SQL>  SELECT ABS('-123') from dual;
+
+ABS('-123')                                                                     
+-----------                                                                     
+        123                                                                     
+
+
+SQL> SELECT TRUNC(132.445,0) from dual;
+
+TRUNC(132.445,0)                                                                
+----------------                                                                
+             132                                                                
+
+SQL> Select mod(18,4) from dual;
+
+ MOD(18,4)                                                                      
+----------                                                                      
+         2                                                                      
+
+SQL>  SELECT SIGN(-12) from dual;
+
+ SIGN(-12)                                                                      
+----------                                                                      
+        -1                                                                      
+
+SQL> SELECT POWER(4, 2) from dual;
+
+POWER(4,2)                                                                      
+----------                                                                      
+        16                                                                      
+
+SQL> SELECT SQRT(64) from dual;
+
+  SQRT(64)                                                                      
+----------                                                                      
+         8                                                                      
+
+SQL> 
+SQL>  SELECT ROUND('344.75', 0) from dual;
+
+ROUND('344.75',0)                                                               
+-----------------                                                               
+              345                                                               
+
+SQL> SELECT EXP(1) from dual;
+
+    EXP(1)                                                                      
+----------                                                                      
+2.71828183                                                                      
+
+SQL> select initcap('sunny') from dual;
+
+INITC                                                                           
+-----                                                                           
+Sunny                                                                           
+
+SQL> select upper('beckham') from dual;
+
+UPPER('                                                                         
+-------                                                                         
+BECKHAM                                                                         
+
+SQL> select lower('scott') from dual;
+
+LOWER                                                                           
+-----                                                                           
+scott                                                                           
+
+SQL> SELECT CONCAT('scott ','stevens') AS ConcatenatedString from dual;
+
+CONCATENATEDS                                                                   
+-------------                                                                   
+scott stevens                                                                   
+
+SQL> SELECT LPAD('scott stevens', 20, '*') from dual;
+
+LPAD('SCOTTSTEVENS',                                                            
+--------------------                                                            
+*******scott stevens                                                            
+
+SQL> SELECT RPAD('scott stevens', 20, '*') from dual;
+
+RPAD('SCOTTSTEVENS',                                                            
+--------------------                                                            
+scott stevens*******                                                            
+
+SQL> 
+SQL> SELECT LTRIM('    Scott styris') AS LeftTrimmedString from dual;
+
+LEFTTRIMMEDS                                                                    
+------------                                                                    
+Scott styris                                                                    
+
+SQL> 
+SQL>  SELECT RTRIM('Sco freman      ') AS RightTrimmedString from dual;
+
+RIGHTTRIMM                                                                      
+----------                                                                      
+Sco freman                                                                      
+
+SQL> 
+SQL>  SELECT LEFT("adiran hufmmann", 3) AS ExtractString from dual;
+ SELECT LEFT("adiran hufmmann", 3) AS ExtractString from dual
+        *
+ERROR at line 1:
+ORA-00904: "LEFT": invalid identifier 
+
+
+SQL> SELECT LOCATE('o', 'scoffie') AS MatchPosition from dual;
+SELECT LOCATE('o', 'scoffie') AS MatchPosition from dual
+       *
+ERROR at line 1:
+ORA-00904: "LOCATE": invalid identifier 
+
+
+SQL> SELECT ASCII('A') AS NumCodeOfChar from dual;
+
+NUMCODEOFCHAR                                                                   
+-------------                                                                   
+           65                                                                   
+
+SQL> SELECT LENGTH('scofie') AS LengthOfString from dual;
+
+LENGTHOFSTRING                                                                  
+--------------                                                                  
+             6                                                                  
+
+SQL> SELECT REPLACE('scottyy steves', 'scottyy', 'adriana') from dual;
+
+REPLACE('SCOTT                                                                  
+--------------                                                                  
+adriana steves                                                                  
+
+SQL> 
+SQL> SELECT REPLACE('trey stevens', 'y', 't') from dual;
+
+REPLACE('TRE                                                                    
+------------                                                                    
+tret stevens                                                                    
+
+SQL>  SELECT  CURRENT_DATE FROM dual;
+
+CURRENT_D                                                                       
+---------                                                                       
+31-JAN-19                                                                       
+
+SQL> 
+SQL> Select to_char(add_months('21 Jan 2017', 5),'DD-MM-YYYY') from dual;
+
+TO_CHAR(AD                                                                      
+----------                                                                      
+21-06-2017                                                                      
+
+SQL> select last_day('21 feb 2020') from dual;
+
+LAST_DAY(                                                                       
+---------                                                                       
+29-FEB-20                                                                       
+
+SQL> SELECT MONTHS_BETWEEN
+  2        (TO_DATE('02-04-1985','MM-DD-YYYY'),
+  3         TO_DATE('01-01-1987','MM-DD-YYYY') ) "Months"
+  4         FROM dual;
+
+    Months                                                                      
+----------                                                                      
+-22.903226                                                                      
+
+SQL>  SELECT MONTHS_BETWEEN
+  2        (TO_DATE('02-04-1984','MM-DD-YYYY'),
+  3         TO_DATE('01-01-1985','MM-DD-YYYY') ) "Months"
+  4         FROM dual;
+
+    Months                                                                      
+----------                                                                      
+-10.903226                                                                      
+
+SQL> SELECT ROUND (TO_DATE ('27-OCT-2019'),'MONTH') from dual;
+
+ROUND(TO_                                                                       
+---------                                                                       
+01-NOV-19                                                                       
+
+SQL> SELECT ROUND (TO_DATE ('21-Jan-2019'),'D') from dual;
+
+ROUND(TO_                                                                       
+---------                                                                       
+20-JAN-19                                                                       
+
+SQL> spool off

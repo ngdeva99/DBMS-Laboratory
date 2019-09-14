@@ -1,0 +1,54 @@
+SQL> select 'drop ' || object_type || ' "' || owner || '"."' || object_name || '";'
+  2  from dba_objects
+  3  where object_type in ('VIEW','PACKAGE','SEQUENCE', 'PROCEDURE', 'FUNCTION', 'INDEX')
+  4  and owner = 'hr';
+from dba_objects
+     *
+ERROR at line 2:
+ORA-00942: table or view does not exist 
+
+
+SQL> SELECT 'DROP '||object_type||' "'|| object_name || '";'
+  2  FROM user_objects WHERE object_type IN ('TRIGGER');
+
+'DROP'||OBJECT_TYPE||'"'||OBJECT_NAME||'";'                                     
+--------------------------------------------------------------------------------
+DROP TRIGGER "UPDATE_JOB_HISTORY";                                              
+DROP TRIGGER "SECURE_EMPLOYEES";                                                
+
+SQL> 
+SQL> SELECT 'DROP '||object_type||' "'|| object_name || '";'
+  2  FROM user_objects WHERE object_type IN ('SEQUENCE');
+
+'DROP'||OBJECT_TYPE||'"'||OBJECT_NAME||'";'                                     
+--------------------------------------------------------------------------------
+DROP SEQUENCE "TICKET1";                                                        
+DROP SEQUENCE "LOCATIONS_SEQ";                                                  
+DROP SEQUENCE "EMPLOYEES_SEQ";                                                  
+DROP SEQUENCE "DEPARTMENTS_SEQ";                                                
+
+SQL> 
+SQL> SELECT 'DROP '||object_type||' "'|| object_name || '" CASCADE CONSTRAINTS;'
+  2  FROM user_objects WHERE object_type IN ('TABLE');
+
+'DROP'||OBJECT_TYPE||'"'||OBJECT_NAME||'"CASCADECONSTRAINTS;'                   
+--------------------------------------------------------------------------------
+DROP TABLE "TICKET_DETAIL" CASCADE CONSTRAINTS;                                 
+DROP TABLE "TICKET" CASCADE CONSTRAINTS;                                        
+DROP TABLE "REGIONS" CASCADE CONSTRAINTS;                                       
+DROP TABLE "LOCATIONS" CASCADE CONSTRAINTS;                                     
+DROP TABLE "JOURNEY" CASCADE CONSTRAINTS;                                       
+DROP TABLE "JOB_HISTORY" CASCADE CONSTRAINTS;                                   
+DROP TABLE "JOBS" CASCADE CONSTRAINTS;                                          
+DROP TABLE "EMPLOYEES" CASCADE CONSTRAINTS;                                     
+DROP TABLE "DEPARTMENTS" CASCADE CONSTRAINTS;                                   
+DROP TABLE "COUNTRIES" CASCADE CONSTRAINTS;                                     
+DROP TABLE "BR" CASCADE CONSTRAINTS;                                            
+
+'DROP'||OBJECT_TYPE||'"'||OBJECT_NAME||'"CASCADECONSTRAINTS;'                   
+--------------------------------------------------------------------------------
+DROP TABLE "BD" CASCADE CONSTRAINTS;                                            
+
+12 rows selected.
+
+SQL> spool off;

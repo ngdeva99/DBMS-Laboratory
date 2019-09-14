@@ -1,0 +1,94 @@
+//9
+SQL> select t1.name from ticket_detail t1 join ticket t2 on t1.ticket_no=t2.ticket_no and t2.origin IN(select origin from ticket where origin='Bangalore');
+
+NAME                                                                            
+---------------                                                                 
+John                                                                            
+Kalif                                                                           
+
+//10
+SQL> select t1.name,t2.time from ticket_detail t1 join ticket t2 on t1.ticket_no=t2.ticket_no and t1.name=(select name from ticket_detail where name='John');
+
+NAME            TIME                                                            
+--------------- ----                                                            
+John            1600                                                            
+
+
+
+//11
+SQL> select distinct b1.bus_details from bd b1 join br b2 on b1.bus_code=b2.bus_code and NOT(b2.origin='Chennai' or b2.destination='Chennai');
+
+BUS_DETAILS                                                                     
+---------------                                                                 
+Deluxe Bus                                                                      
+
+ 
+//12
+SQL> select * from br
+  2  where route_id>(select t1.ticket_no from ticket t1 inner join journey j on t1.journey_id=j.journey_id where j.journey_id='2');
+
+  ROUTE_ID   ROUTE_NO   BUS_CODE ORIGIN  DESTINA       FARE       DIST          
+---------- ---------- ---------- ------- ------- ---------- ----------          
+  CAPACITY                                                                      
+----------                                                                      
+       100          1          1 Chennai Mumbai         200        250          
+        45                                                                      
+                                                                                
+       101          2          1 Mumbai  Chennai        200        250          
+        45                                                                      
+                                                                                
+       102          3          1 Mumbai  Delhi          560        450          
+        40                                                                      
+                                                                                
+
+  ROUTE_ID   ROUTE_NO   BUS_CODE ORIGIN  DESTINA       FARE       DIST          
+---------- ---------- ---------- ------- ------- ---------- ----------          
+  CAPACITY                                                                      
+----------                                                                      
+       103          4          1 Delhi   Mumbai         560        450          
+        40                                                                      
+                                                                                
+       104          5          2 Delhi   Chennai        800        600          
+        40                                                                      
+                                                                                
+       105          6          2 Chennai Delhi          800        600          
+        40                                                                      
+                                                                                
+
+6 rows selected.
+
+//13
+SQL> select * from br
+  2  where route_id>(select t1.j_id from ticket t1 inner join journey j on t1.journey_id=j.journey_id where j.journey_id='2');
+
+no rows selected.
+
+//14
+SQL> select * from ticket where origin='Chennai' and ticket_no<(select avg(total_fare) from ticket);
+
+JOURNEY_ID  TICKET_NO DOB       DOJ       TIME STATION      ORIGIN              
+---------- ---------- --------- --------- ---- ------------ -------------       
+DESTINATION       ADULTS TOTAL_FARE   ROUTE_ID                                  
+------------- ---------- ---------- ----------                                  
+         1          1 05-APR-00 02-FEB-18 1400 MAS          Chennai             
+Mumbai                 4        800        100                                  
+                                                                                
+         6          6 04-MAY-11 04-APR-18 1000 MAS          Chennai             
+Delhi                  2       1600        105                                  
+                                                                                
+
+//15
+SQL> select route_id from br union select route_id from ticket;
+
+  ROUTE_ID                                                                      
+----------                                                                      
+       100                                                                      
+       101                                                                      
+       102                                                                      
+       103                                                                      
+       104                                                                      
+       105                                                                      
+
+6 rows selected.
+
+SQL> spool off;
